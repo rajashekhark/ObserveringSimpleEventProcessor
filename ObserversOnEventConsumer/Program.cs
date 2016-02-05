@@ -28,7 +28,6 @@ namespace ObserversOnEventConsumer
 
             try
             {
-                
                 eventProcessorHost.RegisterEventProcessorAsync<SimpleMessageConsumer>().Wait();
 
                 ObserverRegistry registry = new ObserverRegistry();
@@ -45,7 +44,6 @@ namespace ObserversOnEventConsumer
                     producer.Send(new EventData(Encoding.UTF8.GetBytes(Guid.NewGuid().ToString())));
                     Task.Delay(TimeSpan.FromSeconds(30)).Wait();
                 }
-
             }
             catch (Exception ex)
             {
