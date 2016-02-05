@@ -28,12 +28,12 @@ namespace ObserversOnEventConsumer
 
             try
             {
-                eventProcessorHost.RegisterEventProcessorAsync<SimpleMessageConsumer>().Wait();
+                eventProcessorHost.RegisterEventProcessorAsync<SimpleEventProcessor>().Wait();
 
                 ObserverRegistry registry = new ObserverRegistry();
                 foreach (IObserver observer in registry.GetObservers())
                 {
-                    SimpleMessageConsumer.OnMessageReceived += new EventHandler<MessageReceivedEventArgs>(
+                    SimpleEventProcessor.OnMessageReceived += new EventHandler<MessageReceivedEventArgs>(
                     (sender, e) => observer.When(e));
                 }
                 

@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace ObserversOnEventConsumer
 {
-    public class SimpleMessageConsumer : IEventProcessor 
+    public class SimpleEventProcessor : IEventProcessor 
     {
         private Stopwatch checkpointStopWatch;
 
         public static event EventHandler<MessageReceivedEventArgs> OnMessageReceived;        
 
-        public SimpleMessageConsumer()
+        public SimpleEventProcessor()
         { }
                 
         public Task OpenAsync(PartitionContext context)
@@ -31,7 +31,7 @@ namespace ObserversOnEventConsumer
                 foreach (EventData message in messages)
                 {
                     string contents = Encoding.UTF8.GetString(message.GetBytes());
-                    Console.WriteLine(string.Format("SimpleMessageConsumer: {0}", contents));
+                    Console.WriteLine(string.Format("SimpleEventProcessor: {0}", contents));
                     OnMessageReceived(this, new MessageReceivedEventArgs() { ReceivedOn = DateTimeOffset.UtcNow, Message = message });
                 }
                 
