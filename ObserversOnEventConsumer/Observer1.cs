@@ -8,7 +8,6 @@ namespace ObserversOnEventConsumer
 {
     public class Observer1 : IObserver
     {
-
         public void When(MessageReceivedEventArgs msgEvent)
         {
             string contents = Encoding.UTF8.GetString(msgEvent.Message.GetBytes());

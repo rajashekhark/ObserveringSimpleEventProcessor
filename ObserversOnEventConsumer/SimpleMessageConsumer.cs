@@ -10,14 +10,12 @@ namespace ObserversOnEventConsumer
 {
     public class SimpleMessageConsumer : IEventProcessor 
     {
-
         private Stopwatch checkpointStopWatch;
 
-        public static event EventHandler<MessageReceivedEventArgs> OnMessageReceived;
+        public static event EventHandler<MessageReceivedEventArgs> OnMessageReceived;        
 
         public SimpleMessageConsumer()
-        {
-        }
+        { }
                 
         public Task OpenAsync(PartitionContext context)
         {
